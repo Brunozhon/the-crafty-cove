@@ -9,16 +9,29 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   </head>
   <body>
-    <div id="mydiv"></div>
+    <div id="content"></div>
 
     <script type="text/babel">
-      function Hello() {
-        return <h1>Hello World!</h1>;
+      var catalog = [
+        {
+          name: "Used Pencil",
+          cost: 2,
+          desc: "Get a used pencil from me. The pencil is guranteed to be less than three inches."
+        }
+      ];
+      
+      function Item({ item }) {
+        return (<div>
+          <h2>{item.name}</h2>
+          <p>{item.cost} {item.cost == 1 ? "token" : "tokens"}</p>
+          <p>{item.desc}</p>
+          <button>Buy now!</button>
+        </div>);
       }
-
-      const container = document.getElementById('mydiv');
+      
+      const container = document.getElementById("content");
       const root = ReactDOM.createRoot(container);
-      root.render(<Hello />)
+      root.render(<Item item={catalog[0]} />)
     </script>
   </body>
 </html>
